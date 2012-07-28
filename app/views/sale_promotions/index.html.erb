@@ -1,0 +1,14 @@
+<table>
+ <thead>
+   <tr>
+     <th>Code<th>
+   </tr>
+ </thead>
+ <tbody>
+   <% @promotions.each do |promotion| %>
+     <tr>
+       <td><%= promotion.code %></td>
+     <tr>
+   <% end %>
+ </tbody>
+</table>
