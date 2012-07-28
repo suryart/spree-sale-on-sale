@@ -6,7 +6,7 @@ class ProductPromotion
   end
   
   def on_promotion?
-    (@product.promoted_amount.blank? || @product.promotion_id.blank?) ? false : true
+    (@product.promoted_amount.blank? || @product.promotion_id.blank? || @product.promotion.blank?) ? false : true
   end
   
   def promotion_code
