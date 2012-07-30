@@ -8,7 +8,7 @@ class SalePromotionsController < ApplicationController
 
   def index
     @sale_on_sale = SaleOnSaleImport.new
-    @products = Product.select("id,name,permalink, promoted_amount, promotion_id").promoted.reverse
+    @products = Product.select("id,name,permalink, promoted_amount, promotion_id").promoted.reverse.paginate(:page => params[:page], :per_page => 50)
     respond_to do |format|
       format.html
       format.xml
@@ -33,8 +33,10 @@ class SalePromotionsController < ApplicationController
 
   def update
     product = Product.find_by_permalink(params[:id])
+    promotion = Promotion.find(product.promotion_id)
     respond_to do |format|
       if product.update_attributes(params[:product])
+        promotion.calculator
         format.html { redirect_to :back, :notice => "#{product.name}'s promoted amount has been updated successfully!" }
         format.xml
       else

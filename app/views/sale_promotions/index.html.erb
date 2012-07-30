@@ -1,4 +1,4 @@
-<%= form_tag @sale_on_sale, :url => sale_promotions_path, :multipart => true, :class => "well span57 form-search" do |file| %>
+<%= form_for @sale_on_sale, :html => {:multipart => true, :class => "well span57 form-search"} do |file| %>
 	<%= file.file_field :attachment %>
 	<%= submit_tag("Upload", :class => "btn") %>
 <% end %>
@@ -37,6 +37,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @products %>
 
 <script type="text/javascript">
 	// function showUpdateButton(permalink){

@@ -1,0 +1,4 @@
+<%= form_for @sale_on_sale_import, :html => {:multipart => true, :class => "well form-search"} do |file| %>
+  <%= file.file_field :attachment %>
+  <%= submit_tag("Upload", :class => "btn") %>
+<% end %>

@@ -40,6 +40,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li><%= link_to "Sale on Sale", sale_promotions_path %></li>
+              <li><%= link_to "Import", sale_on_sale_imports_path %></li>
             </ul>
             
             <p class="navbar-text pull-right">Logged in as <%= current_user.firstname %> <%= link_to t('logout'), destroy_user_session_path %></p>
