@@ -6,11 +6,10 @@ class ProductPromotion
   end
   
   def on_promotion?
-    (@product.promoted_amount.blank? || @product.promotion_id.blank? || @product.promotion.blank?) ? false : true
+    (@product.promoted_amount.blank? || @product.promotion_id.blank? || @product.promotion.blank? ||  !(@product.promotion.is_active?)) ? false : true
   end
   
   def promotion_code
-    # promotion.calculator.preferences["amount"] will give amount
     @product.promotion.code
   end
   
