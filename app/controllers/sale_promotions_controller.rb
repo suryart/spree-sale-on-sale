@@ -16,7 +16,7 @@ class SalePromotionsController < ApplicationController
   end
   
   def show
-    @promotion = Product.find_by_permalink(params[:id])
+    @product = Product.find_by_permalink(params[:id])
     respond_to do |format|
       format.html
       format.xml
@@ -24,7 +24,7 @@ class SalePromotionsController < ApplicationController
   end
   
   def edit
-    @promotion = Product.find_by_permalink(params[:id])
+    @product = Product.find_by_permalink(params[:id])
     respond_to do |format|
       format.html
       format.xml
@@ -33,10 +33,12 @@ class SalePromotionsController < ApplicationController
 
   def update
     product = Product.find_by_permalink(params[:id])
-    promotion = Promotion.find(product.promotion_id)
     respond_to do |format|
       if product.update_attributes(params[:product])
-        promotion.calculator
+        promotion = Promotion.find(product.promotion_id)
+        calculator = promotion.calculator
+        preference = Preference.where(:owner_id => calculator.id, :owner_type => "calculator", :name => "amount").first
+        preference.update_attributes(:value => (product.price-product.promoted_amount))
         format.html { redirect_to :back, :notice => "#{product.name}'s promoted amount has been updated successfully!" }
         format.xml
       else

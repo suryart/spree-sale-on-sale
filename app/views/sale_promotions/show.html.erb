@@ -1,0 +1,50 @@
+<div class="form-horizontal">
+	<fieldset>
+    <legend>Sale Promotion</legend>
+    <div class="control-group">
+      <label class="control-label">Product's Name:</label>
+      <div class="controls">
+        <%= @product.name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Product's Price:</label>
+      <div class="controls">
+        <%= @product.cost_price %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Product's Discounted Price:</label>
+      <div class="controls">
+        <%= @product.price %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Product's Promoted Price:</label>
+      <div class="controls">
+        <%= @product.promoted_amount %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Product's Promotion Amount:</label>
+      <div class="controls">
+        <%= @product.promotioned_amount %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Product's Promotion Code:</label>
+      <div class="controls">
+        <%= @product.promotion_code %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Promotion Code usage:</label>
+      <div class="controls">
+        <%= @product.try(:promotion).try(:usage_limit) %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= link_to "Back", sale_promotions_path, :class => "btn" %>
+    </div>
+	 </fieldset>
+</div>

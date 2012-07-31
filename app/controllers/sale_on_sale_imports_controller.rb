@@ -10,6 +10,7 @@ class SaleOnSaleImportsController < ApplicationController
   # GET /sale_on_sale_imports
   # GET /sale_on_sale_imports.xml
   def index
+    @sale_on_sale_import = SaleOnSaleImport.new
     @sale_on_sale_imports = SaleOnSaleImport.all.reverse.paginate(:page => params[:page], :per_page => 50)
 
     respond_to do |format|
@@ -48,11 +49,12 @@ class SaleOnSaleImportsController < ApplicationController
   # POST /sale_on_sale_imports
   # POST /sale_on_sale_imports.xml
   def create
+    params[:sale_on_sale_import][:user_id] = current_user.id
     @sale_on_sale_import = SaleOnSaleImport.new(params[:sale_on_sale_import])
 
     respond_to do |format|
       if @sale_on_sale_import.save
-        format.html { redirect_to(@sale_on_sale_import, :notice => 'Sale on sale import was successfully created.') }
+        format.html { redirect_to(:back, :notice => 'Sale on sale import was successfully created.') }
         format.xml  { render :xml => @sale_on_sale_import, :status => :created, :location => @sale_on_sale_import }
       else
         format.html { render :action => "new" }
@@ -64,11 +66,12 @@ class SaleOnSaleImportsController < ApplicationController
   # PUT /sale_on_sale_imports/1
   # PUT /sale_on_sale_imports/1.xml
   def update
+    params[:sale_on_sale_import][:user_id] = current_user.id
     @sale_on_sale_import = SaleOnSaleImport.find(params[:id])
 
     respond_to do |format|
       if @sale_on_sale_import.update_attributes(params[:sale_on_sale_import])
-        format.html { redirect_to(@sale_on_sale_import, :notice => 'Sale on sale import was successfully updated.') }
+        format.html { redirect_to(:back, :notice => 'Sale on sale import was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

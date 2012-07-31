@@ -5,4 +5,8 @@ Promotion.class_eval do
   def is_active?
   	(starts_at < Time.now && expires_at > Time.now)
   end
+
+  def gen_code
+  	rand(9999).to_s+"SOS"+rand(9999).to_s
+  end
 end
