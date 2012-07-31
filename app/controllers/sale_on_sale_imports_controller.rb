@@ -54,6 +54,7 @@ class SaleOnSaleImportsController < ApplicationController
 
     respond_to do |format|
       if @sale_on_sale_import.save
+        @sale_on_sale_import.upload
         format.html { redirect_to(:back, :notice => 'Sale on sale import was successfully created.') }
         format.xml  { render :xml => @sale_on_sale_import, :status => :created, :location => @sale_on_sale_import }
       else
