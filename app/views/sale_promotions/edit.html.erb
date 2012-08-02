@@ -22,7 +22,7 @@
     <div class="control-group">
       <label class="control-label">Product's Promoted Price:</label>
       <div class="controls">
-        <%= f.text_field :promoted_amount %>
+        <%= f.text_field :on_sale_amount %>
       </div>
     </div>
     <div class="control-group">
@@ -40,11 +40,12 @@
     <div class="control-group">
       <label class="control-label">Promotion Code usage:</label>
       <div class="controls">
-        <%= @product.try(:promotion).try(:usage_limit) %>
+        <%= @product.try(:on_hand) %>
       </div>
     </div>
     <div class="form-actions">
       <%= f.submit("Update", :class => "btn btn-warning") %>
+      <%= link_to "Back", sale_promotions_path, :class => "btn btn-primary" %>
     </div>
 	 </fieldset>
 <% end %>
