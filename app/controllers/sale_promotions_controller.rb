@@ -7,8 +7,8 @@ class SalePromotionsController < ApplicationController
   end
 
   def index
-    @sale_on_sale = SaleOnSaleImport.new
-    @products = Product.select("id,name,permalink,on_sale_amount,sale_on_sale_id").promoted.reverse.paginate(:page => params[:page], :per_page => 50)
+    @sale_on_sale_import = SaleOnSaleImport.new
+    @sale_on_sales = SaleOnSale.includes(:product).active.reverse.paginate(:page => params[:page], :per_page => 50)
     respond_to do |format|
       format.html
       format.xml
