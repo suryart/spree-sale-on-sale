@@ -14,6 +14,15 @@ class SalePromotionsController < ApplicationController
       format.xml
     end
   end
+
+  def all
+    @sale_on_sale_import = SaleOnSaleImport.new
+    @sale_on_sales = SaleOnSale.includes(:product).all.reverse.paginate(:page => params[:page], :per_page => 50)
+    respond_to do |format|
+      format.html
+      format.xml
+    end
+  end
   
   def show
     @product = Product.find_by_permalink(params[:id])
