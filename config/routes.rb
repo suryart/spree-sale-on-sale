@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   
   resources :sale_promotions
   resources :sale_on_sale_imports
+  match '/new_sos' =>  "sale_promotions#new_sos" , :as => :new_sos 
 end

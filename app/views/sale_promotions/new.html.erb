@@ -1,0 +1,9 @@
+<h1>New Sale on Sale Import</h1>
+<% form_tag('/new_sos', :method=>'post', :multipart => true) do %>
+   <%= text_field_tag "sku" ,nil , :placeholder=> "SKU" %><br/>
+   <%= text_field_tag "promo_amount" ,nil , :placeholder=> "Promotion Amount" %><br/>
+   <%= select_date DateTime.now , :prefix => :st_date  %><br/>
+   <%= select_date DateTime.now , :prefix => :end_date  %><br/>
+   <%= submit_tag 'SUBMIT' , :class => "btn btn-primary" %>
+   <% end %>
+<%= link_to 'Back', sale_promotions_path %>
