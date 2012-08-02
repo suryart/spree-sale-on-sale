@@ -6,16 +6,15 @@ class ProductPromotion
   end
   
   def on_promotion?
-    (@product.promoted_amount.blank? || @product.promotion_id.blank? || @product.promotion.blank?) ? false : true
+    (@product.is_sos? && @product.sale_on_sale_id?) ? @product.sale_on_sale.is_active? : false
   end
   
   def promotion_code
-    # promotion.calculator.preferences["amount"] will give amount
-    @product.promotion.code
+    @product.sale_on_sale.try(:code)
   end
   
   def promotioned_amount
-    @product.promotion.calculator.preferences["amount"]
+    @product.sale_on_sale.try(:amount)
   end
   
 end
