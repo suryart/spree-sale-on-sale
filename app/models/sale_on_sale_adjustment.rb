@@ -15,8 +15,7 @@ class SaleOnSaleAdjustment < ActiveRecord::Base
   end
 
   def update_order
-    adjustments = SaleOnSaleAdjustment.where(:order_id => order_id)
-    adjustment_total = adjustments.map(&:amount).sum
-    order.update_attributes(:adjustment_total => -adjustment_total, :total => (@order.total - adjustment_total), :item_total => products.map(&:price).sum)
+    adjustment = Adjustment.find_by_source_id_and_source_type(id, "SaleOnSaleAdjustment")
+    adjustment.destroy unless adjustment.nil?
   end
 end
