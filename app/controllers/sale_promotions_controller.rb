@@ -44,4 +44,23 @@ class SalePromotionsController < ApplicationController
       end
     end
   end
+
+  def destroy
+   product=Product.find_by_permalink(params[:id])
+    puts "parameters: #{params[:id]}"
+    puts product
+
+   respond_to do |format|
+          @sos=SaleOnSale.find(product.sale_on_sale_id)
+          if @sos.destroy
+          product.update_attributes(:is_sos => false , :sale_on_sale_id => nil , :on_sale_amount => nil)
+          puts "Inside:: #{@sos}"
+          format.html { redirect_to :back, :notice => "#{product.name}'s promoted amount has been deleted successfully!" }
+          format.xml
+         else
+          format.html { redirect_to :back, :alert => "#{product.name}'s promoted SOS couldn't be updated. Here is the error: #{product.errors}" }
+         end    
+    end
+  end
+  
 end
