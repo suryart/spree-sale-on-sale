@@ -25,13 +25,13 @@
     		<td><%= product.price %></td>
     		<td>
     			<%= form_for product, :url => sale_promotion_path(product.permalink) do |f| %>
-    				<%= f.text_field :promoted_amount, :class => "span1" %>
+    				<%= f.text_field :on_sale_amount, :class => "span1" %>
     			<% end %>
     		</td>
     		<td><%= product.promotion_code %></td>
     		<td><%= product.promotioned_amount %></td>
-    		<td><%= product.promotion.starts_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
-    		<td><%= product.promotion.expires_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
+    		<td><%= product.sale_on_sale.starts_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
+    		<td><%= product.sale_on_sale.expires_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
     		<td><%= link_to "Edit", edit_sale_promotion_path(product.permalink), :class => "btn btn-mini btn-primary" %> <%#= link_to t('.destroy', :default => t("helpers.links.destroy")), sale_promotion_path(product.permalink), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'  %>
     			<td><%= link_to("Delete", sale_promotion_path(product.permalink), :method => :delete, :class => "btn btn-danger") %></td>
     		</td>

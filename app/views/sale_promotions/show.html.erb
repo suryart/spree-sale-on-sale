@@ -22,7 +22,7 @@
     <div class="control-group">
       <label class="control-label">Product's Promoted Price:</label>
       <div class="controls">
-        <%= @product.promoted_amount %>
+        <%= @product.on_sale_amount %>
       </div>
     </div>
     <div class="control-group">
@@ -40,7 +40,7 @@
     <div class="control-group">
       <label class="control-label">Promotion Code usage:</label>
       <div class="controls">
-        <%= @product.try(:promotion).try(:usage_limit) %>
+        <%= @product.try(:on_hand) %>
       </div>
     </div>
     <div class="form-actions">

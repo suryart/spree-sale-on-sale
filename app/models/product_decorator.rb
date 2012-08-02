@@ -1,12 +1,11 @@
 Product.class_eval do
-	scope :promoted, where("promoted_amount is NOT NULL AND promotion_id is NOT NULL")
+  belongs_to :sale_on_sale
 
-  belongs_to :promotion #, :conditions => ["starts_at < :start_time AND expires_at > :end_time", {:start_time => Time.now, :end_time => Time.now}]
-  
+  scope :promoted, where("on_sale_amount IS NOT NULL AND sale_on_sale_id IS NOT NULL")
+
   delegate :on_promotion?, :promotion_code, :promotioned_amount, :to => :product_promotion
-  
+
   def product_promotion
     ProductPromotion.new(self)
   end
-  
 end
