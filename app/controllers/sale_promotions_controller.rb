@@ -75,6 +75,7 @@ class SalePromotionsController < ApplicationController
   def new
      
   end
+  
   def new_sos
       start_date=("#{params[:st_date][:year]}-#{params[:st_date][:month]}-#{params[:st_date][:day]}").to_date
       end_date=("#{params[:end_date][:year]}-#{params[:end_date][:month]}-#{params[:end_date][:day]}").to_date
