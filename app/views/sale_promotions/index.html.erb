@@ -1,8 +1,11 @@
 <%= form_for @sale_on_sale_import, :html => {:multipart => true, :class => "well span57 form-search"} do |file| %>
 	<%= file.file_field :attachment %>
-	<%= submit_tag("Upload", :class => "btn") %>
+	<%= submit_tag("Upload", :class => "btn btn-primary") %>
 <% end %>
 
+<div class="well span57 form-search">
+	<%= link_to "Add Single Product", new_sale_promotion_path , :class => "btn btn-primary" %></td>
+</div>
 <table class="table striped">
 	<thead>
 		<tr>
@@ -36,7 +39,7 @@
       		<td><%= product.sale_on_sale.expires_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
       		<td><%= link_to "Edit", edit_sale_promotion_path(product.permalink), :class => "btn btn-mini btn-primary" %> <%#= link_to t('.destroy', :default => t("helpers.links.destroy")), sale_promotion_path(product.permalink), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'  %>  
       			<td><%= link_to "Show", sale_promotion_path(product.permalink), :method => :destroy, :class => "btn btn-mini btn-primary" %></td>
-    			<td><%= button_to "Delete", sale_promotion_path(product.permalink), :method => 'delete' , :class => "btn btn-danger"%> </td>
+    			<td><%= button_to "Delete", sale_promotion_path(product.permalink), :method => 'delete' , :class => "btn btn-mini btn-danger"%> </td>
 
       		</td>
         <% end %>
