@@ -36,10 +36,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Styletag Glue</a>
+          <a class="brand" href="#">Styletag Sale On Sale</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Sale on Sale", sale_promotions_path %></li>
+              <li><%= link_to "Sale on Sale", sale_on_sales_path %></li>
               <li><%= link_to "Import", sale_on_sale_imports_path %></li>
             </ul>
             
@@ -55,6 +55,10 @@
           <button class="close" data-dismiss="alert">×</button>
         </div>
       <% end %>
+      <h2>Import file:</h2>
+      <%= render "sale_on_sale_imports/form" %>
+      <h2>Add a product to sale on sale:</h2>
+      <%= render  "sale_on_sale_imports/new_sale_on_sale" %>
     
       <%= yield %>
 

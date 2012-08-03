@@ -21,10 +21,16 @@ class SaleOnSaleImportHandler
 			end_date = (end_date.split(" ").first.split("/").last.size == 2) ?  DateTime.strptime("#{end_date}","%d/%m/%y %H:%M:%S") : DateTime.strptime("#{end_date}","%d/%m/%Y %H:%M:%S")
 			product = Variant.where(:sku => sku).first.try(:product)
 			unless product.nil?
-				sale_on_sale = SaleOnSale.new(:name => "Sale on Sale", :description => "Sale on Sale..", :amount => (product.price-promoted_amount), :starts_at => start_date, :expires_at => end_date)
-				sale_on_sale.code = sale_on_sale.gen_code
-				sale_on_sale.save
-				product.update_attributes(:is_sos => true, :sale_on_sale_id => sale_on_sale.id, :on_sale_amount => promoted_amount)
+				if product.sale_on_sale.nil?
+					sale_on_sale = SaleOnSale.new(:name => "Sale on Sale", :description => "Sale on Sale..", :amount => (product.price-promoted_amount), :starts_at => start_date, :expires_at => end_date)
+					sale_on_sale.code = sale_on_sale.gen_code
+					sale_on_sale.save
+					product.update_attributes(:is_sos => true, :sale_on_sale_id => sale_on_sale.id, :on_sale_amount => promoted_amount)
+				else
+					sale_on_sale = product.sale_on_sale
+					sale_on_sale.update_attributes(:amount => (product.price-promoted_amount), :starts_at => start_date, :expires_at => end_date)
+					product.update_attributes(:is_sos => true, :on_sale_amount => promoted_amount)
+				end
 			end
 		end
 	end

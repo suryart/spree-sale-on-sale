@@ -1,0 +1,8 @@
+<ul class="nav nav-pills">
+  <li <%= current_page?(sale_on_sales_path) ? "class='active'" : '' %>>
+    <%= link_to "Active", sale_on_sales_path %>
+  </li>
+  <li <%= current_page?(all_sale_on_sales_path) ? "class='active'" : '' %>>
+    <%= link_to "All", all_sale_on_sales_path %>
+  </li>
+</ul>
